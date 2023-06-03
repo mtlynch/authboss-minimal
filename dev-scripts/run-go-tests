@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Runs all unit tests and performs static code analysis.
+
+# Exit on first failure.
+set -e
+
+# Echo commands.
+set -x
+
+# Fail when piped commands fail.
+set -o pipefail
+
+# Exit on unset variable.
+set -u
+
+# Change directory to repository root.
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+readonly SCRIPT_DIR
+cd "${SCRIPT_DIR}/.."
+
+go build -o ./bin/authboss-minimal cmd/authboss-minimal/main.go
+
+go vet ./...
+
+# Install staticcheck if it's not present.
+STATICCHECK_PATH="$(go env GOPATH)/bin/staticcheck"
+readonly STATICCHECK_PATH
+readonly STATICCHECK_VERSION="v0.4.3"
+if [[ ! -f "${STATICCHECK_PATH}" ]]; then
+    go install "honnef.co/go/tools/cmd/staticcheck@${STATICCHECK_VERSION}"
+fi
+"${STATICCHECK_PATH}" ./...
+
+# Install errcheck if it's not present.
+ERRCHECK_PATH="$(go env GOPATH)/bin/errcheck"
+readonly ERRCHECK_PATH
+readonly ERRCHECK_VERSION="v1.6.2"
+if [[ ! -f "${ERRCHECK_PATH}" ]]; then
+    go install "github.com/kisielk/errcheck@${ERRCHECK_VERSION}"
+fi
+"${ERRCHECK_PATH}" -ignoretests ./...

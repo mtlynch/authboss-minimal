@@ -8,7 +8,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, world!")
+	if _, err := fmt.Fprint(w, "Hello, world!"); err != nil {
+		panic(err)
+	}
 }
 
 func main() {
