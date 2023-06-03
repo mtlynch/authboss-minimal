@@ -68,6 +68,9 @@ jobs:
           keys:
             - go-mod-v1-{{ checksum "go.sum" }}
       - run:
+          name: Install musl for static linking libc
+          command: sudo apt update && sudo apt install --yes musl-tools
+      - run:
           name: Compile backend
           command: dev-scripts/build-backend
       - save_cache:
