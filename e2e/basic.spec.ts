@@ -8,6 +8,6 @@ test("loads main page", async ({ page }) => {
 test("loading a private page without logging in leads to an HTTP 401 Unauthorized error", async ({
   page,
 }) => {
-  const response = await page.goto("/");
+  const response = await page.goto("/private");
   await expect(response?.status()).toBe(401);
 });
