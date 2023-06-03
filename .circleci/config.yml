@@ -23,6 +23,17 @@ jobs:
       - run:
           name: Run static analysis on bash scripts
           command: ./dev-scripts/check-bash
+  check_frontend:
+    docker:
+      - image: cimg/node:16.14.2
+    steps:
+      - checkout
+      - run:
+          name: Download npm packages
+          command: npm install
+      - run:
+          name: Check formatting
+          command: npm run check-format
   test_go:
     docker:
       - image: cimg/go:1.20.4
@@ -52,4 +63,5 @@ workflows:
     jobs:
       - check_whitespace
       - check_bash
+      - check_frontend
       - test_go
