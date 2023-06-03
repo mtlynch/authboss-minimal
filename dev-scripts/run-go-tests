@@ -1,31 +1,15 @@
 #!/bin/bash
 
 # Runs all unit tests and performs static code analysis.
-#
-# Options:
-#
-#  --full   Include slower, more exhaustive tests and capture test coverage
-#           results (outputs to .coverage.html).
 
 # Exit on first failure.
 set -e
 
-# Echo commands to stdout.
+# Echo commands.
 set -x
 
 # Fail when piped commands fail.
 set -o pipefail
-
-full_test=""
-go_test_flags=()
-readonly COVERAGE_FILE_RAW=".coverage.out"
-readonly COVERAGE_FILE_HTML=".coverage.html"
-if [[ "$1" = "--full" ]]; then
-  full_test="1"
-  go_test_flags+=("-v")
-  go_test_flags+=("-race")
-  go_test_flags+=("--coverprofile=${COVERAGE_FILE_RAW}")
-fi
 
 # Exit on unset variable.
 set -u
@@ -34,9 +18,6 @@ set -u
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 readonly SCRIPT_DIR
 cd "${SCRIPT_DIR}/.."
-
-TEST_OUTPUT_FILE="$(mktemp)"
-readonly TEST_OUTPUT_FILE
 
 go build -o ./bin/authboss-minimal cmd/authboss-minimal/main.go
 
