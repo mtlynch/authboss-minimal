@@ -85,3 +85,4 @@ workflows:
       - check_bash
       - check_frontend
       - test_go
+      - e2e
