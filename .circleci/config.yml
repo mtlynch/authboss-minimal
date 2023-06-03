@@ -33,7 +33,7 @@ jobs:
           command: npm install
       - run:
           name: Check formatting
-          command: npm run check-format
+          command: ./dev-scripts/check-frontend-formatting
   test_go:
     docker:
       - image: cimg/go:1.20.4
