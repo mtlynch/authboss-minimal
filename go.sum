@@ -7,6 +7,12 @@ github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiu
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/gorilla/securecookie v1.1.1 h1:miw7JPhV+b/lAHSXz4qd/nN9jRiAFV5FwjeKyCS8BvQ=
+github.com/gorilla/securecookie v1.1.1/go.mod h1:ra0sb63/xPlUeL+yeDciTfxMRAA+MP+HVt/4epWDjd4=
+github.com/gorilla/sessions v1.2.1 h1:DHd3rPN5lE3Ts3D8rKkQ8x/0kqfeNmBAaiSi+o7FsgI=
+github.com/gorilla/sessions v1.2.1/go.mod h1:dk2InVEVJ0sfLlnXv9EAgkf6ecYs/i80K/zI+bUmuGM=
+github.com/volatiletech/authboss-clientstate v0.0.0-20230313034706-0b930a6c0713 h1:3rwnMPKOvYH2HNRNlpHFk6QUUL7oiSdjYPY/JkQbaVU=
+github.com/volatiletech/authboss-clientstate v0.0.0-20230313034706-0b930a6c0713/go.mod h1:kP+/eI3nr8kyYvjMFGZonqKfBk6vIMTKt7URTqoafM0=
 github.com/volatiletech/authboss/v3 v3.2.2 h1:SqU9slHNLGr8Ti6Lyg441gMPP9I5fWqTCT/la9/OVFE=
 github.com/volatiletech/authboss/v3 v3.2.2/go.mod h1:LuvsiNgxDYK89gw7/7xp5JX4DW/V/60VjAXk7Jl/cUw=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
