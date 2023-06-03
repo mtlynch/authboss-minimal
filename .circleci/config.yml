@@ -47,16 +47,36 @@ jobs:
             - go-test-mod-v1-{{ checksum "go.sum" }}
       - run:
           name: Test go packages
-          command: dev-scripts/run-go-tests --full
+          command: ./dev-scripts/run-go-tests
+      - run:
+          name: Build go binary
+          command: ./dev-scripts/build-backend
       - store_artifacts:
           path: .coverage.html
       - run:
           name: Verify golang formatting
-          command: dev-scripts/check-go-formatting
+          command: ./dev-scripts/check-go-formatting
       - save_cache:
           key: go-test-mod-v1-{{ checksum "go.sum" }}
           paths:
             - ~/go/pkg/mod
+  e2e:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.34.3-focal
+    environment:
+      NODE_ENV: development
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run e2e tests
+          command: ./dev-scripts/run-e2e-tests
+      - store_artifacts:
+          path: playwright-report
 workflows:
   version: 2
   test_deploy:

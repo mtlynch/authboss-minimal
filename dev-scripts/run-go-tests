@@ -19,8 +19,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 readonly SCRIPT_DIR
 cd "${SCRIPT_DIR}/.."
 
-go build -o ./bin/authboss-minimal cmd/authboss-minimal/main.go
-
 go vet ./...
 
 # Install staticcheck if it's not present.
