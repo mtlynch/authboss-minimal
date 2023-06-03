@@ -4,6 +4,7 @@
   "description": "authboss-minimal dev scripts",
   "author": "Michael Lynch",
   "devDependencies": {
+    "@playwright/test": "^1.34.3",
     "prettier": "2.7.1",
     "prettier-plugin-go-template": "0.0.13"
   }

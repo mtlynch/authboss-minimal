@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Runs all unit tests and performs static code analysis.
+
+# Exit on first failure.
+set -e
+
+# Echo commands.
+set -x
+
+# Exit on unset variable.
+set -u
+
+# Change directory to repository root.
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+readonly SCRIPT_DIR
+cd "${SCRIPT_DIR}/.."
+
+EXTRA_FLAGS=()
+EXTRA_FLAGS+=("-ldflags" '-linkmode external -extldflags -static')
+EXTRA_FLAGS+=("-mod=readonly")
+readonly EXTRA_FLAGS
+
+GOOS="linux" \
+  GOARCH="amd64" \
+  CC=musl-gcc \
+  go build "${EXTRA_FLAGS[@]}" \
+    -v \
+    -o ./bin/authboss-minimal \
+    cmd/authboss-minimal/main.go

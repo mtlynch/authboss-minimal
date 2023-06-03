@@ -10,4 +10,5 @@ set -x
 set -u
 
 ./dev-scripts/run-go-tests
+./dev-scripts/build-backend
 ./dev-scripts/check-frontend-formatting
